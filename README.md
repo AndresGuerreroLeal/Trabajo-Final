@@ -23,19 +23,16 @@ Crear un entorno de desarrollo
 
 ```
 python -m venv .env
-
 ```
 Activarlo
 
 ```
 .env\Scripts\activate.bat
-
 ```
 Instalar 
 
 ```
 pip install -r requirements.tx
-
 ```
 
 ## Ejecución ⚙️
@@ -44,18 +41,15 @@ Inicio de la base de datos
 
 ```
 python manage.py makemigrations
-
 ```
 
 ```
 python manage.py migrate
-
 ```
 Inicio del programa
 
 ```
 python manage.py runserver
-
 ```
 
 Nota: Si surge algún problema durante la instalación del programa o el funcionamiento del programa no es correcto por favor escribirme.
