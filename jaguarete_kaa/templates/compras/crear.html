@@ -1,0 +1,87 @@
+{% extends "../base.html" %}
+
+
+
+{% block main %}
+
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-6 pt-3 pb-3" id="profile-box">
+                <h4 class="mb-4">Nuevo producto</h4>
+
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <input type="hidden" name="user" value="{{ user.pk }}" />
+                    <input type="hidden" name="profile" value="{{ profile.pk }}" />
+
+                    {# Website field #}
+                    <div class="form-group mb-3">
+                        <input
+                            class="form-control {% if form.nombre.errors %}is-invalid{% endif %}"
+                            type="text"
+                            name="nombre"
+                            placeholder="Nombre"
+                        >
+                        <div class="invalid-feedback">
+                            {% for error in form.nombre.errors %}{{ error }}{% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <input
+                            class="form-control {% if form.categoria.errors %}is-invalid{% endif %}"
+                            type="text"
+                            name="categoria"
+                            placeholder="Categoria"
+                        >
+                        <div class="invalid-feedback">
+                            {% for error in form.categoria.errors %}{{ error }}{% endfor %}
+                        </div>
+                    </div>
+
+                    {# Photo field #}
+                    <div class="form-group mb-3">
+                        <label>Choose your photo:</label>
+                        <input
+                            class="form-control {% if form.imagen.errors %}is-invalid{% endif %}"
+                            type="file"
+                            name="imagen"
+                            placeholder="imagen"
+                        >
+                        <div class="invalid-feedback">
+                            {% for error in form.imagen.errors %}{{ error }}{% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <input
+                            class="form-control {% if form.descri.errors %}is-invalid{% endif %}"
+                            type="text"
+                            name="descri"
+                            placeholder="Descrición"
+                        >
+                        <div class="invalid-feedback">
+                            {% for error in form.descri.errors %}{{ error }}{% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <input
+                            class="form-control {% if form.precio.errors %}is-invalid{% endif %}"
+                            type="text"
+                            name="precio"
+                            placeholder="Precio"
+                        >
+                        <div class="invalid-feedback">
+                            {% for error in form.precio.errors %}{{ error }}{% endfor %}
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block mt-3">Crear Producto</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

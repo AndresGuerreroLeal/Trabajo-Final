@@ -1,0 +1,52 @@
+{% extends '../base.html' %}
+{% block main %}
+<div class="container d-flex flex-column justify-content-center align-items-center p-5">
+    <p>Estas buscando: <strong>{{ query }}</strong></p>
+
+    {% if articulos %}
+    <p>Articulos encontrados: {{ articulos|length }} articulos</p>
+    {% elif articulo %}
+    <p>Articulos encontrados: {{ articulo|length}} articulos </p>
+    {% else %}
+    <p>No se encontro nigun articulo</p>
+    {% endif %}
+
+    <div class="container ">
+        <div class="row m-5">
+            {% for articulo in articulos %}
+            <div class="col d-flex justify-content-center mb-5">
+                <div class="card" style="width: 18rem;">
+                    <img src='{{ articulo.imagen.url }}' class="card-img-top" style="height: 200px;"
+                        alt="{{ articulo.imagen.url }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ articulo.nombre }}</h5>
+                        <p class="card-text">{{ articulo.descri }}</p>
+                        <form class="d-flex" action="/producto/" method='GET'>
+                            <input type="hidden" value="{{ articulo.pk }}" name="prd">
+                            <button class="btn btn-info" type="submit">Ver mas</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% for articulo in articulo %}
+            <div class="col d-flex justify-content-center mb-5">
+                <div class="card" style="width: 18rem;">
+                    <img src='{{ articulo.imagen.url }}' class="card-img-top" style="height: 200px;"
+                        alt="{{ articulo.imagen.url }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ articulo.nombre }}</h5>
+                        <p class="card-text">{{ articulo.descri }}</p>
+                        <form class="d-flex" action="/producto/" method='GET'>
+                            <input type="hidden" value="{{ articulo.pk }}" name="prd">
+                            <button class="btn btn-info" type="submit">Ver mas</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+    {% endblock %}

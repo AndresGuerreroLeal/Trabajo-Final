@@ -1,0 +1,77 @@
+{% extends '../base.html' %}
+{% load static %}
+{% block main %}
+<div class="contianer p-5"
+  style="display: flex; justify-content: space-around; align-items: center; flex-direction: column;">
+
+  <table class="table" id="lista-carrito">
+    <thead>
+      <tr>
+        <th scope="col">Imagen</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Codigo de referencia</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Unidades</th>
+        <th scope="col">Precio</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    {% for articulo in articulos %}
+
+    <input id="imagen" type="hidden" value="{{ articulo.imagen.url }}">
+    <input id="articulo" type="hidden" value="{{ articulo.nombre }}">
+    <input id="id" type="hidden" value="{{ articulo.id }}">
+    <input id="descri" type="hidden" value="{{ articulo.descri }}">
+    <input id="unidades" type="hidden" value="1">
+    <input id="precio" type="hidden" value="{{ articulo.precio }}">
+    {% endfor %}
+
+    <tbody>
+      <!-- <tr>
+        <td id="imagen" value="{{ articulo.imagen }}" style="width:150px;border-radius:10px">
+        </td>
+        <td id="articulo" value="{{ articulo.nombre }}"></td>
+        <td id="id" value="{{ articulo.pk }}"></td>
+        <td id="descri" value="{{ articulo.descri }}"></td>
+        <td>
+          <select id="unidades" name="unidades">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </td>
+        <td id="precio" value="{{ articulo.precio }}"></td>
+        <td><i class="fas fa-trash-alt borrar-curso" style="cursor: pointer;"></i></td>
+      </tr> -->
+      <!-- <tr>
+            <th scope="row"></th>
+            <td ></td>
+            <td></td>
+            <td>Precio total</td>
+            <td>12312321</td>
+            <td></td>
+          </tr> -->
+    </tbody>
+  </table>
+  <div class="alert alert-info" role="alert" style="width: 300px; height: 60px;">
+    <p>
+      <strong>Precio Final: $</strong>
+      <span id="precios">0</span>
+    </p>
+  </div>
+
+  <div class="container" style="display: flex; justify-content: space-evenly;">
+    <button class="btn btn-primary" id="vaciar-carrito" >Vaciar carrito</button>
+    <button class="btn btn-primary">Finalizar compra</button>
+  </div>
+</div>
+
+<script src="../../static/javascript/app.js"></script>
+{% endblock %}

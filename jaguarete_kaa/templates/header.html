@@ -1,0 +1,53 @@
+{% block header %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home' %}">JAGUARETE KAA S.A.</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+        <span class="me-4 mt-1">
+          <i class="fas fa-user"></i>
+          {{ user.username }}
+        </span>
+
+        {% if user.is_superuser %}
+
+        <a style="text-decoration: none;" class="me-2 btn btn-outline-danger" href="{% url 'logout' %}"><i
+            class="fas fa-times"></i> Logout</a>
+
+        {% elif user.is_authenticated %}
+
+        <a style="text-decoration: none;" class=" me-2 btn btn-outline-danger" href="{% url 'logout' %}"><i
+            class="fas fa-times"></i> Logout</a>
+
+        <form action="/carro/" method='GET'>
+          <input type="hidden" value="" name="prd">
+          <button class="btn btn-outline-success  me-2" type="submit" style="width: 200px;"><i
+              class="fas fa-shopping-cart"></i> Agregar carrito</button>
+        </form>
+
+        <!-- <button class="btn border border-primary  me-2" type="button"><a style="text-decoration: none;"
+            href="{% url 'carrito' %}"><i class="fas fa-shopping-cart"></i> Carrito</a></button> -->
+
+
+        {% else %}
+
+        <a style="text-decoration: none;" class="btn btn-outline-success me-2" href="{% url 'login' %}"><i
+            class="fas fa-sign-in-alt"></i> Login</a>
+        <a style="text-decoration: none;" class="ms-2 btn btn-outline-info" href="{% url 'signup' %}"><i
+            class="fas fa-user-plus"></i> Registro</a>
+
+
+        {% endif %}
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+{% endblock %}

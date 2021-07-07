@@ -1,0 +1,62 @@
+{% extends '../base.html' %}
+{% block main %}
+
+{% for articulo in articulos %}
+<div class="container p-4 mt-5 " style="width: 100%; height: 505px; display: flex; justify-content: center;">
+  <div class="card mb-3" style="width: 1200px; height: 435px;">
+    <div class="row g-0">
+      <div class="col" style="width: 500px;">
+
+        <img src="{{ articulo.imagen.url }}" style="width: 550px; height: 433px;"
+          class="img-fluid rounded-start rounded" alt="...">
+
+
+      </div>
+
+      <div class="col" style="display: flex; flex-direction: column; justify-content: space-evenly;">
+        <div class="card-body">
+          <h1 class="card-title ">{{ articulo.nombre }}</h1>
+          <p class="card-text mt-3"><strong>Categoria: </strong>{{articulo.categoria }}</p>
+          <p class="card-text mt-3"><strong>Descripción: </strong>{{ articulo.descri }}</p>
+          <p class="card-text mt-3">
+          <p><strong>Precio: $</strong>{{ articulo.precio }}</p>
+          {% if user.is_superuser %}
+
+          <div class="container" style="display: flex; justify-content: space-evenly;">
+            <form class="d-flex" action="/editar/" method='GET'>
+              <input type="hidden" value="{{ articulo.nombre }}" name="prd">
+              <button class="mt-5 me-5 btn btn-outline-warning" type="submit" style="width: 200px;">Editar
+                producto</button>
+            </form>
+
+            <form class="d-flex" action="/eliminar/" method='GET'>
+              <input type="hidden" value="{{ articulo.nombre }}" name="prd">
+              <button class="mt-5 me-5 btn btn-outline-danger" type="submit" style="width: 200px;">Eliminar
+                producto</button>
+            </form>
+          </div>
+
+          {% else %}
+
+          <form class="d-flex" action="/carro/" method='GET'>
+            <input type="hidden" value="{{ articulo.pk }}" name="prd">
+            <button class="mt-4 me-5 btn btn-outline-success" type="submit" style="width: 200px;">Agregar
+              carrito</button>
+
+          </form>
+
+
+          {% endif %}
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+
+
+</div>
+
+{% endblock %}

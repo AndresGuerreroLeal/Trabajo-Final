@@ -1,0 +1,55 @@
+{% extends '../base.html' %}
+
+{% block main %}
+
+
+<div class="container p-5 ">
+   
+    <h1 class="mb-3">Productos</h1>
+    <h4>Últimos productos</h4>  
+    <div class="row m-5 ">
+    {% for producto in productos %}
+        <div class="col d-flex justify-content-center">
+          <div class="card" style="width: 18rem;">
+              <img src='{{ producto.imagen.url }}' class="card-img-top" style="height: 200px;" alt="{{ producto.imagen.url }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ producto.nombre }}</h5>
+              <p class="card-text">{{ producto.descri }}</p>
+              <form class="d-flex" action="/producto/" method='GET'>
+                <input type="hidden" value="{{ producto.pk }}" name="prd">
+                <button class="btn btn-info" type="submit">Ver mas</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <h4 >Mas productos</h4>
+
+    {% for producto in productoCaja %}
+    <div class="row m-4 p-3 border" style="height: 330px;">
+      <div class="col">
+        <figure style="width: 250px; height: 300px;">
+          <img class="rounded float-start img-fluid" style="height:300px" src="{{ producto.imagen.url }}">
+        </figure>
+      </div>
+      <div class="col">
+        <h3>{{ producto.nombre }}</h3>
+      </div>
+      <div class="col-4">
+          {{ producto.descri }}
+      </div>
+      <div class="col">${{ producto.precio }}</div>
+      <div class="col">
+        <form class="d-flex" action="/producto/" method='GET'>
+          <input type="hidden" value="{{ producto.pk }}" name="prd">
+          <button class="btn btn-info" type="submit" style="width: 100px;">Ver mas</button>
+        </form>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+{% endblock %}

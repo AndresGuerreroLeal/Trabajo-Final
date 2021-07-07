@@ -1,0 +1,77 @@
+{% block menu %}
+
+<header id="header">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
+        <div class="container-fluid">
+
+            <button class="navbar-toggler"   type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse"  id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Categorias
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <form class="d-flex" action="/buscar/" method='GET'>
+                                <input type="hidden" value="Muebles" name="prd">
+                                <li style="width: 100%;"><button class="dropdown-item" type="submit">Muebles</button></li>
+                            </form>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <form class="d-flex" style="width: 100%;" action="/buscar/" method='GET'>
+                                <input type="hidden" value="Sillas" name="prd">
+                                <li style="width: 100%;"><button class="dropdown-item"  type="submit" >Sillas</button></li>
+                            </form>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <form class="d-flex" action="/buscar/" method='GET'>
+                                <input type="hidden" value="Mesas" name="prd">
+                                <li style="width: 100%;"><button class="dropdown-item" type="submit">Mesas</button></li>
+                            </form>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <form class="d-flex" action="/buscar/" method='GET'>
+                                <input type="hidden" value="Camas" name="prd">
+                                <li style="width: 100%;"><button class="dropdown-item " type="submit" style="width: 100%;">Camas</button></li>
+                            </form>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'acercade' %}">Acerca de</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+                    </li>
+
+                    {% if user.is_superuser %}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'crear' %}">Nuevo Producto</a>
+                    </li>
+
+                    {% endif%}
+
+                </ul>
+
+                <form class="d-flex" action="/buscar/" method='GET'>
+                    <input class="form-control me-2" type="search" placeholder="Search" name="prd" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+
+{% endblock %}
